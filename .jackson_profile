@@ -1,0 +1,63 @@
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+
+  #add git completion to aliases
+  __git_complete go _git_checkout
+  __git_complete gm _git_merge
+  __git_complete gp _git_pull
+  __git_complete gd _git_diff
+  __git_complete gb _git_branch
+fi
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+# Show pwd and branch in iterm tab name
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}$(__git_ps1 :%s)\007"'
+
+GIT_PS1_SHOWDIRTYSTATE=true
+export PS1='[\u@mbp \w$(__git_ps1)]\$ '
+HISTFILESIZE=10000
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
+export LESS=" -R"
+alias less='less -m -N -g -i -J --line-numbers --underline-special'
+
+#ALIASES
+#git
+alias ga='git add'
+alias gb='git branch'
+alias gc='git commit'
+alias gcp='ga .; gc -m "cp"'
+alias gd='git diff'
+alias gdn='git diff --name-only'
+alias gdm='gd master'
+alias gdmn='gdn master'
+alias gl='git log'
+alias gm='git merge'
+alias gmm='git merge master'
+alias go='git checkout'
+alias gom='git checkout master'
+alias gp='git pull; if [ "$(git config --get remote.origin.url)" = "https://github.com/index/cppclient.git" ]; then gsu; echo "submodules updated" ; fi'
+alias gpm='branch_name="$(git symbolic-ref HEAD 2>/dev/null)" || branch_name="(unnamed branch)"; branch_name=${branch_name##refs/heads/}; gom; gp; go $branch_name; gmm'
+alias gpom='git pull origin master'
+alias gr='git rebase'
+alias grm='gr master'
+alias gs='git status'
+alias gsu='git submodule update'
+alias gsiu='git submodule init; gsu'
+alias gpoh='git push origin HEAD'
+alias pre='gpoh && hub compare'
+
+
+#misc
+alias b='for i in {1..10}; do printf "\n"; done'
+alias scum='say scumbag'
