@@ -31,6 +31,12 @@ export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --
 export LESS=" -R"
 alias less='less -m -N -g -i -J --line-numbers --underline-special'
 
+# Start tmux at shell login
+# If not running tmux interactively, do not do anything
+[[ $- != *i* ]] && return
+[[ -z "$TMUX" ]] && exec tmux
+
+
 #ALIASES
 #git
 alias ga='git add'
@@ -61,6 +67,3 @@ alias pre='gpoh && hub compare'
 #misc
 alias b='for i in {1..10}; do printf "\n"; done'
 alias scum='say scumbag'
-
-#start tmux
-tmux
