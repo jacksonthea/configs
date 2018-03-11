@@ -32,6 +32,13 @@ export LESS=" -R"
 alias less='less -m -N -g -i -J --line-numbers --underline-special'
 
 #ALIASES
+# docker
+alias dc='docker-compose'
+alias dcd='dc down'
+alias dcu='dc up'
+alias dcub='dc up --build'
+alias di='docker image'
+
 #git
 alias ga='git add'
 alias gb='git branch'
