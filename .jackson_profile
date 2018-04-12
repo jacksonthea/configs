@@ -1,7 +1,3 @@
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Need to copy this from https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
@@ -12,6 +8,7 @@ if [ -f ~/.git-completion.bash ]; then
   __git_complete gp _git_pull
   __git_complete gd _git_diff
   __git_complete gb _git_branch
+  __git_complete gr _git_rebase
 fi
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -25,9 +22,6 @@ GIT_PS1_SHOWDIRTYSTATE=true
 export PS1='[\u@mbp \w$(__git_ps1)]\$ '
 HISTFILESIZE=10000
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
 export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
 export LESS=" -R"
 alias less='less -m -N -g -i -J --line-numbers --underline-special'
@@ -36,6 +30,8 @@ alias less='less -m -N -g -i -J --line-numbers --underline-special'
 # If not running tmux interactively, do not do anything
 #[[ $- != *i* ]] && return
 #[[ -z "$TMUX" ]] && exec tmux
+
+
 
 
 #ALIASES
@@ -48,14 +44,14 @@ alias di='docker image'
 
 #git
 alias ga='git add'
-alias gb='git branch'
+alias gb="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) (%(color:green)%(committerdate:relative)%(color:reset))'"
 alias gc='git commit'
 alias gcp='ga .; gc -m "cp"'
 alias gd='git diff'
 alias gdn='git diff --name-only'
 alias gdm='gd master'
 alias gdmn='gdn master'
-alias gl='git log'
+alias gl='git log --pretty=format:"%Cgreen%h - %C(yellow)%d %Cred%an, %Cblue%ar : %Creset%s" --decorate=full'
 alias gm='git merge'
 #alias gmm='git merge master'
 alias go='git checkout'
