@@ -46,7 +46,7 @@ alias di='docker image'
 #git
 alias ga='git add'
 alias gb="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) (%(color:green)%(committerdate:relative)%(color:reset))'"
-alias gbd="git branch -D"
+alias gbd="git branch -D && git remote prune origin"
 alias gc='git commit'
 alias gcp='ga .; gc -m "cp"'
 alias gd='git diff'
@@ -55,7 +55,7 @@ alias gdm='gd master'
 alias gdmn='gdn master'
 alias gl='git log --pretty=format:"%Cgreen%h - %C(yellow)%d %Cred%an, %Cblue%ar : %Creset%s" --decorate=full'
 alias gm='git merge'
-#alias gmm='git merge master'
+alias gmm='git merge master'
 alias go='git checkout'
 alias gom='git checkout master'
 alias gp='git pull; if [ "$(git config --get remote.origin.url)" = "https://github.com/index/cppclient.git" ]; then gsu; echo "submodules updated" ; fi'
