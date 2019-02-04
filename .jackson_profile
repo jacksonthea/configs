@@ -46,7 +46,8 @@ alias di='docker image'
 #git
 alias ga='git add'
 alias gb="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) (%(color:green)%(committerdate:relative)%(color:reset))'"
-alias gbd="git branch -D && git remote prune origin"
+alias gbd="git branch -D"
+alias gprune="git remote prune origin"
 alias gc='git commit'
 alias gcp='ga .; gc -m "cp"'
 alias gd='git diff'
