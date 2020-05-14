@@ -16,6 +16,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Show pwd and branch in iterm tab name
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}$(__git_ps1 :%s)\007"'
 
@@ -50,6 +52,7 @@ alias gbd="git branch -D"
 alias gbm="git branch -m"
 alias gprune="git remote prune origin"
 alias gc='git commit'
+alias gca='gc --amend'
 alias gcp='ga .; gc -m "cp"'
 alias gd='git diff'
 alias gdn='gd --name-only'
@@ -60,7 +63,7 @@ alias gm='git merge'
 alias gmm='gm master'
 alias go='git checkout'
 alias gom='go master'
-alias gp='git pull; if [ "$(git config --get remote.origin.url)" = "https://github.com/index/cppclient.git" ]; then gsu; echo "submodules updated" ; fi'
+alias gp='git pull'
 alias gpm='git fetch origin master:master'
 alias gpmm='gpm; gmm'
 alias gpom='git pull origin master'
